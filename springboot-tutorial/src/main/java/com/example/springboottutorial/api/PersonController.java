@@ -2,10 +2,12 @@ package com.example.springboottutorial.api;
 
 import com.example.springboottutorial.model.Person;
 import com.example.springboottutorial.service.PersonService;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,7 +18,7 @@ public class PersonController {
     private final PersonService personService;
 
     @PostMapping
-    public void addPerson(@RequestBody Person person) {
+    public void addPerson(@Valid @NonNull @RequestBody Person person) {
         personService.addPerson(person);
     }
     @GetMapping
@@ -35,7 +37,7 @@ public class PersonController {
     }
 
     @PutMapping(path = "{id}")
-    public void updatePerson(@PathVariable("id")UUID id, @RequestBody Person personToUpdate) {
+    public void updatePerson(@PathVariable("id")UUID id, @Valid @NonNull @RequestBody Person personToUpdate) {
         personService.updatePerson(id, personToUpdate);
     }
 }

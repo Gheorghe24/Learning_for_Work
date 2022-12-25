@@ -13,11 +13,11 @@ import java.util.UUID;
 
 @Service
 public class PersonService {
-    @Qualifier("fakeDao") @NonNull
+    @Qualifier("postgres") @NonNull
     private final PersonDao personDao;
 
     @Autowired
-    public PersonService(@Qualifier("fakeDao") PersonDao personDao) {
+    public PersonService(@Qualifier("postgres") PersonDao personDao) {
         this.personDao = personDao;
     }
 
